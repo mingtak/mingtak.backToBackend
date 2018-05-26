@@ -1,0 +1,36 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="mingtak.backToBackend">
+
+    <subscriber
+        for="zope.interface.Interface zope.lifecycleevent.interfaces.IObjectAddedEvent"
+        handler=".event.toFolderContents"
+    />
+
+    <subscriber
+        for="zope.interface.Interface plone.dexterity.interfaces.IEditFinishedEvent"
+        handler=".event.toFolderContents"
+    />
+
+    <subscriber
+        for="zope.interface.Interface plone.dexterity.interfaces.ICancelledEvent"
+        handler=".event.toFolderContents"
+    />
+
+    <subscriber
+        for="Products.PlonePAS.events.IUserLoggedInEvent"
+        handler=".event.back_to_cover"
+    />
+<!--
+    <subscriber
+        for="Products.PlonePAS.events.IUserLoggedOutEvent"
+        handler=".event.logged_out_back_to_cover"
+    />
+
+    <subscriber
+        for="Products.PluggableAuthService.interfaces.events.IUserLoggedOutEvent"
+        handler=".event.back_to_cover"
+    />
+-->
+</configure>
