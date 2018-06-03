@@ -12,7 +12,10 @@ def toFolderContents(obj, event):
     Return to Folder Contents
     """
     request = getRequest()
-    folder = obj.getParentNode()
+    try:
+        folder = obj.getParentNode()
+    except:
+        return
     if folder == None:
         try:
             folder = api.portal.get()
