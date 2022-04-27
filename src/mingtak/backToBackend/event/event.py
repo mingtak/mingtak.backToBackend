@@ -12,6 +12,13 @@ def toFolderContents(obj, event):
     Return to Folder Contents
     """
     request = getRequest()
+
+    portal_type = getattr(obj, 'portal_type', None)
+
+    if portal_type == 'Plone Site' and request:
+        request.response.redirect('%s/folder_contents' % obj.absolute_url())
+        return
+
     try:
         folder = obj.getParentNode()
     except:
